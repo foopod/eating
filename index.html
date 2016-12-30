@@ -21,9 +21,6 @@
             h3{
                 margin-top: -30px; 
             }
-            a:hover{
-                color:gray;
-            }
             a{
                 color: black;
             }
@@ -69,6 +66,7 @@
             function init(){
                 if (!localStorage.data){
                     localStorage.data = JSON.stringify([]);
+                    stopEating();
                 } else {
                     data = JSON.parse(localStorage.data);
                 }
