@@ -1,7 +1,9 @@
 <html>
     <head>
+        <title>chowtime</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Sniglet:800" rel="stylesheet">
+        <link rel="icon" type="image/png" href="donut.png">
         <style>
             .submit {
                 width: 200px;
@@ -18,6 +20,7 @@
             body{
                 text-align: center;
                 font-family: 'Sniglet', cursive;
+                margin-top: 50px    ;
             }
             h3{
                 margin-top: -30px; 
@@ -28,6 +31,39 @@
             a:visited{
                 color: black;
             }
+            .badge {
+                display: block;
+
+                padding: 0;
+                font-size: 30px;
+                font-weight: lighter !important;
+                line-height: 50px;
+                color: #fff !important;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: baseline;
+                background-color: lightgray;
+                border-radius:50px;
+                position: relative;
+                top: -3px;
+                height: 50px;
+                width: 50px;
+                text-decoration: none;
+                margin: auto;
+                margin-top: 20px;
+            }
+            #info{
+                max-width: 30em;
+                margin: auto;
+                font-family: sans-serif;
+                text-align: left;
+            }
+            #info h4{
+                font-size:30px;
+            }
+            #info p{
+                font-size:20px;
+            }
         </style>
     </head>
     <body>
@@ -36,7 +72,16 @@
         <h3> For <span id="time"></span></h3>
         <a id="eating" onclick="startEating()" class="submit" >Start Eating</a>
         <a id="notEating" onclick="stopEating()" class="submit" style="display:none;"> Stop Eating</a>
-        <a href="#" id="link" style="font-family:sans-serif;font-size:12px;margin-top:6px;" download="eatingHistory.json"><br>Export Data</a>
+        <a href="#" onclick="toggleInfo()" class="badge">?</a>
+        <div id="info" style="display:none;">
+            <h4>What is Chowtime?</h4>
+            <p>Chowtime is a simple web app that can be used to track your eating habits. Just click the button above whenever you start and stop eating. Then export the data and use it however you like. I initially created it to track my efforts in intermittent fasting.</p>
+            <h4>How is my data stored?</h4>
+            <p>Chowtime uses the browser's local storage. This means that your data never leaves your device and yours to do with as you please. The only downside to this is that localstorage is wiped whenever you delete your local cache/history/app data.</p>
+            <h4>How do I export my data?</h4>
+            <p>Sure! Click <a href="#" id="link" download="eatingHistory.json">this link</a> here to download the latest data in JSON.</p>
+        </div>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
         <script>
             var data = [];
@@ -111,6 +156,14 @@
                 var str = JSON.stringify(history);
                 var dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(str);
                 var link = document.getElementById('link').href = dataUri;
+            }
+            
+            function toggleInfo(){
+                if(document.getElementById("info").style.display == 'none'){
+                    document.getElementById("info").style.display = 'block';
+                } else {
+                    document.getElementById("info").style.display = 'none';
+                }
             }
             
             init();
