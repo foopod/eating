@@ -1,0 +1,63 @@
+.submit {
+                width: 200px;
+                background-color: #4BA3C3;
+                color: white;
+                padding: 14px 20px;
+                margin: auto;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 24px;
+                text-decoration: none;
+            }
+            body{
+                text-align: center;
+                font-family: 'Sniglet', cursive;
+                margin-top: 50px    ;
+            }
+            h1{
+                font-size:36px;
+            }
+            h3{
+                margin-top: -30px; 
+            }
+            a{
+                color: black;
+            }
+            a:visited{
+                color: black;
+            }
+            .badge {
+                display: block;
+
+                padding: 0;
+                font-size: 30px;
+                font-weight: lighter !important;
+                line-height: 50px;
+                color: #fff !important;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: baseline;
+                background-color: lightgray;
+                border-radius:50px;
+                position: relative;
+                top: -3px;
+                height: 50px;
+                width: 50px;
+                text-decoration: none;
+                margin: auto;
+                margin-top: 20px;
+            }
+            #info{
+                max-width: 30em;
+                margin: auto;
+                font-family: sans-serif;
+                text-align: left;
+                padding: 20px;
+            }
+            #info h4{
+                font-size:30px;
+            }
+            #info p{
+                font-size:20px;
+            }
