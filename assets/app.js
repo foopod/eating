@@ -14,8 +14,8 @@ function storeEating(isEating){
     data = JSON.parse(localStorage.data);
     var time = new Date().getTime();
     var event = {
-        "time" : time,
-        "eating" : isEating
+        "t" : time,
+        "e" : isEating
     };
     data.push(event);
     exportHistory(data);
@@ -31,11 +31,11 @@ function init(){
         data = JSON.parse(localStorage.data);
     }
 
-        if (localStorage.currentState == "true"){
-            showEating();
-        } else {
-            showNotEating();
-        }
+    if (localStorage.currentState == "true"){
+        showEating();
+    } else {
+        showNotEating();
+    }
     updateTime();
     exportHistory(data);
     setInterval(updateTime, 1000);
@@ -43,7 +43,7 @@ function init(){
 
 function updateTime(){
     var now  = new Date().getTime();
-    var then = data[data.length-1].time;
+    var then = data[data.length-1].t;
 
     var ms = moment(now,"x").diff(moment(then,"x"));
     var d = moment.duration(ms);
