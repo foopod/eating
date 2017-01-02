@@ -65,6 +65,10 @@
                 var start = getHoursFromMillis(startTime)/24 * 2* Math.PI - 0.5*Math.PI;
                 var end = getHoursFromMillis(endTime)/24 * 2* Math.PI - 0.5*Math.PI;
                 var radius;
+                if(days == 0){
+                    days = 1;
+                    dayOfEntry =1;
+                }
                 if(getHoursFromMillis(startTime) > getHoursFromMillis(endTime)){
                     radius =  (dayOfEntry/(days))* maxRadius;
                     drawArc(isEating, x, y, radius, start, 1.5 * Math.PI);
