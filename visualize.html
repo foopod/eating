@@ -6,16 +6,20 @@
         <canvas id="app" style="margin: 0px;"></canvas>
         <script>
             var data = JSON.parse(localStorage.data);
-            var oneDay = 24*60*60*1000;
+            var days;
             var ctx;
             var canvas;
             var dayOfEntry = 0;
+            var radius = 0;
+            var x;
+            var y;
 
             function init(){
                 canvas = document.getElementById('app');
                 ctx = canvas.getContext('2d');
                 resizeCanvas();
-                
+                x = canvas.width/2;
+                y = canvas.height/2;
                 
                 var time = new Date().getTime();
                 var currentState = false;
@@ -32,19 +36,23 @@
 //                data = stuff;
                 
                 drawV();
+                drawCurrentChunk();
+                setInterval(drawCurrentChunk, 1000);
+            }
+            
+            function drawCurrentChunk(){
+                var current = data[data.length-1].t;
+                var now = new Date().getTime();
+                drawChunk(days, current, now, data[data.length-1].e, x, y, radius/2);
             }
             
             function drawV(){
-                var x = canvas.width/2;
-                var y = canvas.height/2;
-                
-                var radius = 0;
                 if(x > y){
                     radius = y;
                 } else {
                     radius = x;   
                 }
-                var days = daysBetween(new Date(data[0].t),new Date(data[data.length-1].t));
+                days = daysBetween(new Date(data[0].t),new Date(data[data.length-1].t));
                 for(var i = 0; i < data.length-1; i++){
                     var current = data[i].t;
                     var next = data[i+1].t;
