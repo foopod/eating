@@ -29,7 +29,7 @@
                     };
                     stuff.push(event);
                 }
-                data = stuff;
+//                data = stuff;
                 
                 drawV();
             }
@@ -66,10 +66,10 @@
                     //new bit
                     dayOfEntry++;
                     radius =  (dayOfEntry/(days))* maxRadius;
-                    drawArc(isEating, x, y, radius, 1.5 * Math.PI, end);
+                    drawArc(isEating, x, y, radius, 1.5 * Math.PI, end, maxRadius);
                 } else {
                     radius =  (dayOfEntry/(days))* maxRadius;
-                    drawArc(isEating, x, y, radius, start, end);
+                    drawArc(isEating, x, y, radius, start, end, maxRadius);
                 }
                 console.log(start +"," + end + " - " + dayOfEntry);
             }
@@ -80,7 +80,7 @@
                 return hours;
             }
                 
-            function drawArc(isEating, x, y, radius, start, end){
+            function drawArc(isEating, x, y, radius, start, end, maxRadius){
                 ctx.beginPath();
                 if(isEating){
                     ctx.strokeStyle="#FF0000";
@@ -89,7 +89,7 @@
                 }
                 var width = canvas.width/2;
                 var height = canvas.height/2;
-                ctx.lineWidth=3;
+                ctx.lineWidth=3 * maxRadius/200;
                 ctx.arc(x,y,radius+20,start,end, false);
                 ctx.stroke();
             }
