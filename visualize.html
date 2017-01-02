@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+    </head>
+    <body>
+        <canvas id="app" style="margin: 0px;"></canvas>
+        <script>
+            var data = JSON.parse(localStorage.data);
+            var oneDay = 24*60*60*1000;
+            var ctx;
+            var canvas;
+            var dayOfEntry = 0;
+
+            function init(){
+                canvas = document.getElementById('app');
+                ctx = canvas.getContext('2d');
+                resizeCanvas();
+                
+                
+                var time = new Date().getTime();
+                var currentState = false;
+                var stuff = [];
+                for(var i = 0; i < 50; i ++){
+                    time += Math.round(Math.random() * 1000*60*60*1)+1000*60*60*15;
+                    currentState = !currentState;
+                    var event = {
+                        "t" : time,
+                        "e" : currentState
+                    };
+                    stuff.push(event);
+                }
+                data = stuff;
+                
+                drawV();
+            }
+            
+            function drawV(){
+                var x = canvas.width/2;
+                var y = canvas.height/2;
+                
+                var radius = 0;
+                if(x > y){
+                    radius = y;
+                } else {
+                    radius = x;   
+                }
+                var days = Math.floor((data[data.length-1].t-data[0].t)/oneDay)+1;
+                console.log(days);
+                for(var i = 0; i < data.length-1; i++){
+                    var current = data[i].t;
+                    var next = data[i+1].t;
+                    drawChunk(days, current, next, data[i].e, x, y, radius/2);
+                }
+                
+            }
+            
+            function drawChunk(days, startTime, endTime, isEating, x, y, maxRadius){
+                console.log("------------------");
+                var start = getHoursFromMillis(startTime)/24 * 2* Math.PI - 0.5*Math.PI;
+                var end = getHoursFromMillis(endTime)/24 * 2* Math.PI - 0.5*Math.PI;
+                var radius;
+                if(getHoursFromMillis(startTime) > getHoursFromMillis(endTime)){
+                    radius =  (dayOfEntry/(days))* maxRadius;
+                    drawArc(isEating, x, y, radius, start, 1.5 * Math.PI);
+                    
+                    //new bit
+                    dayOfEntry++;
+                    radius =  (dayOfEntry/(days))* maxRadius;
+                    drawArc(isEating, x, y, radius, 1.5 * Math.PI, end);
+                } else {
+                    radius =  (dayOfEntry/(days))* maxRadius;
+                    drawArc(isEating, x, y, radius, start, end);
+                }
+                console.log(start +"," + end + " - " + dayOfEntry);
+            }
+            
+            function getHoursFromMillis(time){
+                var tmp = new Date(time);
+                var hours = tmp.getHours() + tmp.getMinutes()/60 + tmp.getSeconds()/60/60;
+                return hours;
+            }
+                
+            function drawArc(isEating, x, y, radius, start, end){
+                ctx.beginPath();
+                if(isEating){
+                    ctx.strokeStyle="#FF0000";
+                } else {
+                    ctx.strokeStyle="#0000FF";
+                }
+                var width = canvas.width/2;
+                var height = canvas.height/2;
+                ctx.lineWidth=3;
+                ctx.arc(x,y,radius+20,start,end, false);
+                ctx.stroke();
+            }
+
+            function resizeCanvas(e) {
+                canvas.width = document.body.clientWidth;
+                canvas.height = document.body.clientHeight;
+            }
+            
+            init();
+        </script>
+    </body>
+</html>

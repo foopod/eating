@@ -30,7 +30,6 @@ function init(){
     } else {
         data = JSON.parse(localStorage.data);
     }
-
     if (localStorage.currentState == "true"){
         showEating();
     } else {
