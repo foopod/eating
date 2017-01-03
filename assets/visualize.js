@@ -29,12 +29,11 @@ function start(){
 //        stuff.push(event);
 //    }
 //                data = stuff;
+      
     data.push({
         "t" : new Date().getTime(),
         "e" : !data[data.length-1].e
-    });    
-
-
+    });
     drawV();
 }
 
@@ -46,7 +45,7 @@ function drawV(){
     }
     var last31 = [];
     var less31 = new Date().getTime() - 1000*60*60*24*31;
-    for(var i = 0; i < data.length-1;i++){
+    for(var i = 0; i < data.length;i++){
         if(data[i].t > less31){
             last31.push(data[i]);
         }
