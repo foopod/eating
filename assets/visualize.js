@@ -16,10 +16,10 @@ function start(){
     resizeCanvas();
     x = canvas.width/2;
     y = canvas.height/2;
-    var time = new Date().getTime();
-    var currentState = false;
-    var stuff = [];
-//    for(var i = 0; i < 40; i ++){
+//    var time = new Date().getTime() - 1000*60*60*24*50;
+//    var currentState = false;
+//    var stuff = [];
+//    for(var i = 0; i < 100; i ++){
 //        time += Math.round(Math.random() * 1000*60*60*10)+1000*60*60*5;
 //        currentState = !currentState;
 //        var event = {
@@ -44,11 +44,18 @@ function drawV(){
     } else {
         radius = x;   
     }
-    days = daysBetween(new Date(data[0].t),new Date(data[data.length-1].t));
-    for(var i = 0; i < data.length-1; i++){
-        var current = data[i].t;
-        var next = data[i+1].t;
-        drawChunk(days, current, next, data[i].e, x, y, radius/2);
+    var last31 = [];
+    var less31 = new Date().getTime() - 1000*60*60*24*31;
+    for(var i = 0; i < data.length-1;i++){
+        if(data[i].t > less31){
+            last31.push(data[i]);
+        }
+    }
+    days = daysBetween(new Date(last31[0].t),new Date(last31[last31.length-1].t));
+    for(var i = 0; i < last31.length-1; i++){
+        var current = last31[i].t;
+        var next = last31[i+1].t;
+        drawChunk(days, current, next, last31[i].e, x, y, radius/2);
     }
 
 }
@@ -63,7 +70,7 @@ function drawChunk(days, startTime, endTime, isEating, x, y, maxRadius){
     }
     if(getHoursFromMillis(startTime) > getHoursFromMillis(endTime)){
         radius =  (dayOfEntry/(days))* maxRadius;
-        drawArc(isEating, x, y, radius, start, 1.5 * Math.PI,maxRadius, false);
+        drawArc(isEating, x, y, radius, start, 1.5 * Math.PI+0.01,maxRadius, false);
 
         //new bit
         dayOfEntry++;
@@ -97,10 +104,10 @@ function drawArc(isEating, x, y, radius, start, end, maxRadius, isPhat){
         ctx.strokeStyle="#827191";
     }
     if(isPhat){
-        ctx.lineWidth=7 * (maxRadius)/200+10;
+        ctx.lineWidth=4 * (maxRadius)/200+10;
         ctx.arc(x,y,radius+25,start,end, false);
     } else {
-        ctx.lineWidth=7 * (maxRadius)/200;
+        ctx.lineWidth=4 * (maxRadius)/200;
         ctx.arc(x,y,radius+20,start,end, false);
     }
     ctx.stroke();
