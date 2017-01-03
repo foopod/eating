@@ -2,9 +2,28 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" type="image/png" href="assets/donut.png">
+        <link href="https://fonts.googleapis.com/css?family=Sniglet:800" rel="stylesheet">
+        <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>
-        <canvas id="app" style="margin: 0px;"></canvas>
+        <canvas id="app" style="margin: 0px;margin-top:-100px;"></canvas>
+        <div style="position:fixed;left:10px;top:10px;margin-top:-20px;">
+            <a href="#" onclick="toggleInfo()" class="badge" >?</a>
+        </div>
+        <div style="margin-top:-150px; display:none;" id="info">
+            <h4>What am I looking at here?</h4>
+            <p>Each ring represents a single day (midnight at the top) with the earliest in the centre and the most outer ring being today. The sections in blue mark when you are not eating and red when you are.</p>
+            <p>Also please note that this tool doesn't work properly for periods of fasting or eating of more than 24 hours. Take this as an incentive to keep on top of everything.</p>
+        </div>
         <script src="assets/visualize.js"></script>
+        <script>
+            function toggleInfo(){
+                if(document.getElementById("info").style.display == 'none'){
+                    document.getElementById("info").style.display = 'block';
+                } else {
+                    document.getElementById("info").style.display = 'none';
+                }
+            }
+        </script>
     </body>
 </html>

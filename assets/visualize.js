@@ -98,9 +98,9 @@ function getHoursFromMillis(time){
 function drawArc(isEating, x, y, radius, start, end, maxRadius, isPhat){
     ctx.beginPath();
     if(isEating){
-        ctx.strokeStyle="#F44E3F";
+        ctx.strokeStyle="#FE938C";
     } else {
-        ctx.strokeStyle="#827191";
+        ctx.strokeStyle="#BABFF4";
     }
     if(isPhat){
         ctx.lineWidth=10 * (maxRadius)/200+10;
