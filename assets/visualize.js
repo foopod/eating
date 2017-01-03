@@ -114,8 +114,10 @@ function drawArc(isEating, x, y, radius, start, end, maxRadius, isPhat){
 }
 
 function resizeCanvas(e) {
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+    canvas.style.width = document.body.clientWidth;
+    canvas.style.height = document.body.clientHeight;
+    canvas.width = document.body.clientWidth*2;
+    canvas.height = document.body.clientHeight*2;
 }
 
 function daysBetween(first, second) {
