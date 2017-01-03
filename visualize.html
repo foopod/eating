@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" type="image/png" href="assets/donut.png">
     </head>
     <body>
         <canvas id="app" style="margin: 0px;"></canvas>
@@ -33,11 +34,11 @@
                     };
                     stuff.push(event);
                 }
-//                data = stuff;
-                data.push({
-                    "t" : new Date(),
-                    "e" : !data[data.length-1].e
-                });    
+                data = stuff;
+//                data.push({
+//                    "t" : new Date(),
+//                    "e" : !data[data.length-1].e
+//                });    
                     
 
                 drawV();
@@ -68,7 +69,7 @@
                 }
                 if(getHoursFromMillis(startTime) > getHoursFromMillis(endTime)){
                     radius =  (dayOfEntry/(days))* maxRadius;
-                    drawArc(isEating, x, y, radius, start, 1.5 * Math.PI);
+                    drawArc(isEating, x, y, radius, start, 1.5 * Math.PI,maxRadius, false);
                     
                     //new bit
                     dayOfEntry++;
@@ -97,15 +98,15 @@
             function drawArc(isEating, x, y, radius, start, end, maxRadius, isPhat){
                 ctx.beginPath();
                 if(isEating){
-                    ctx.strokeStyle="#FF0000";
+                    ctx.strokeStyle="#F44E3F";
                 } else {
-                    ctx.strokeStyle="#0000FF";
+                    ctx.strokeStyle="#827191";
                 }
                 if(isPhat){
-                    ctx.lineWidth=3 * maxRadius/200+6;
+                    ctx.lineWidth=7 * (maxRadius)/200+6;
                     ctx.arc(x,y,radius+23,start,end, false);
                 } else {
-                    ctx.lineWidth=3 * maxRadius/200;
+                    ctx.lineWidth=7 * (maxRadius)/200;
                     ctx.arc(x,y,radius+20,start,end, false);
                 }
                 ctx.stroke();
