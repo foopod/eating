@@ -30,7 +30,7 @@ function start(){
 //    }
 //                data = stuff;
     data.push({
-        "t" : new Date(),
+        "t" : new Date().getTime(),
         "e" : !data[data.length-1].e
     });    
 
