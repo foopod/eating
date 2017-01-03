@@ -34,16 +34,13 @@
                     stuff.push(event);
                 }
 //                data = stuff;
-                
+                data.push({
+                    "t" : new Date(),
+                    "e" : !data[data.length-1].e
+                });    
+                    
+
                 drawV();
-                drawCurrentChunk();
-                setInterval(drawCurrentChunk, 1000);
-            }
-            
-            function drawCurrentChunk(){
-                var current = data[data.length-1].t;
-                var now = new Date().getTime();
-                drawChunk(days, current, now, data[data.length-1].e, x, y, radius/2);
             }
             
             function drawV(){
