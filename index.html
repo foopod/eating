@@ -22,12 +22,13 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
 <!--        <canvas id="app" width="380px" height="380px" style="position:absolute;top:-60px;left:0px;right:0px;margin-left: auto;margin-right: auto;z-index :-1;"></canvas>-->
-        <div id="eatingDisplay"><img src="assets/chow.svg" width=200px><h1>CHOWING DOWN</h1></div>
-        <div id="notEatingDisplay"><img src="assets/unchow.svg" width=200px><h1>NOT EATING</h1></div><br>
+        <div id="eatingDisplay" style="display:none;"><img src="assets/chow.svg" width=200px><h1>CHOWING DOWN</h1></div>
+        <div id="notEatingDisplay" style="display:none;"><img src="assets/unchow.svg" width=200px><h1>NOT EATING</h1></div><br>
         <h3> For <span id="time"></span></h3>
-        <a id="eating" onclick="startEating()" class="submit" >Chow Time!</a>
-        <a id="notEating" onclick="stopEating()" class="submit" style="display:none;"> Stop Eating</a>
-        <a href="#" onclick="toggleInfo()" class="badge">?</a>
+        <input type=text id="diaryEntry" placeholder="thoughts.." oninput="typing()" style="display:none;">
+        <a id="startStopEating" onclick="toggleEating()" class="submit" >Chow Time!</a>
+<!--        <a id="notEating" onclick="stopEating()" class="submit" style="display:none;"> Stop Eating</a>-->
+        <a onclick="toggleInfo()" class="badge">?</a>
         <div id="info" style="display:none;">
             <h4>What is Chowtime?</h4>
             <p>Chowtime is a simple web app that can be used to track your eating habits. Just click the button above whenever you start and stop eating. Then export the data and use it however you like, make some cool graphs or something idk. I initially created it to track my efforts in intermittent fasting.</p>
@@ -38,6 +39,8 @@
             <p>Chowtime uses the browser's local storage. This means that your data never leaves your device and is yours to do with as you please. The only downside to this is that localstorage is wiped whenever you delete your local cache/history/app data.</p>
             <h4>How can I see my data?</h4>
             <p>Currently I am working on a <a href="visualize">visualization tool</a> (note that this will only work if you have at least 24 hours worth of entries and currently it only shows the last 31 days of activity) or you can export the data directly with <a href="#" id="link" download="eatingHistory.json">this link</a>.</p>
+            <h4>Experimental Features?</h4>
+            <p>Diary Entry <a onclick="toggleDiary()" class="submit">On</a></p>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
         <script src="assets/app.js"></script>

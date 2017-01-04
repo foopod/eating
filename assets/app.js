@@ -1,25 +1,32 @@
 var data = [];
             
-function startEating(){
-    showEating();
-    storeEating(true);
+function toggleEating(){
+    //or diary Entry
+    if(document.getElementById("startStopEating").innerHTML == "Submit"){
+        var entries = JSON.parse(localStorage.diaryEntries);
+        entries.push({
+            "t" : new Date().getTime(),
+            "e" : document.getElementById("diaryEntry").value
+        });
+        localStorage.diaryEntries = JSON.stringify(entries);
+        document.getElementById("diaryEntry").value = "";
+        typing();
+    } else {
+        storeEating();
+        toggleEatingDisplay();
+    }
 }
 
-function stopEating(){
-    showNotEating();
-    storeEating(false);
-}
-
-function storeEating(isEating){
+function storeEating(){
     data = JSON.parse(localStorage.data);
     var time = new Date().getTime();
     var event = {
         "t" : time,
-        "e" : isEating
+        "e" : !data[data.length-1].e
     };
     data.push(event);
     exportHistory(data);
-    localStorage.currentState = isEating;
+    localStorage.currentState = event.e;
     localStorage.data = JSON.stringify(data);
 }
 
@@ -30,6 +37,10 @@ function init(){
     } else {
         data = JSON.parse(localStorage.data);
     }
+    if(localStorage.diary == "true"){
+        document.getElementById("diaryEntry").style.display = 'block';
+    } 
+    
     if (localStorage.currentState == "true"){
         showEating();
     } else {
@@ -51,18 +62,24 @@ function updateTime(){
     document.getElementById("time").innerHTML = s;
 }
 
+function toggleEatingDisplay(){
+    if(localStorage.currentState == "true"){
+        showEating();
+    } else {
+        showNotEating();
+    }
+}
+
 function showEating(){
+    document.getElementById("startStopEating").innerHTML = 'Not Eating';
     document.getElementById("eatingDisplay").style.display = 'block';
     document.getElementById("notEatingDisplay").style.display = 'none';
-    document.getElementById("eating").style.display = 'none';
-    document.getElementById("notEating").style.display = 'block';
 }
 
 function showNotEating(){
     document.getElementById("eatingDisplay").style.display = 'none';
     document.getElementById("notEatingDisplay").style.display = 'block';
-    document.getElementById("notEating").style.display = 'none';
-    document.getElementById("eating").style.display = 'block';
+    document.getElementById("startStopEating").innerHTML = 'Chow Time!';
 }
 
 function exportHistory(history){
@@ -71,11 +88,33 @@ function exportHistory(history){
     var link = document.getElementById('link').href = dataUri;
 }
 
+function typing(){
+    if(!localStorage.diaryEntries){
+        localStorage.diaryEntries = JSON.stringify([]);
+    }
+    if(document.getElementById("diaryEntry").value.length > 0){
+        document.getElementById("startStopEating").innerHTML = 'Submit';
+    } else {
+        toggleEatingDisplay();
+    }
+}
+
 function toggleInfo(){
     if(document.getElementById("info").style.display == 'none'){
         document.getElementById("info").style.display = 'block';
     } else {
         document.getElementById("info").style.display = 'none';
+    }
+}
+
+function toggleDiary(){
+    var state = localStorage.diary;
+    if(localStorage.diary == "true"){
+        localStorage.diary = "false";
+        document.getElementById("diaryEntry").style.display = 'none';
+    } else {
+        localStorage.diary = "true";
+        document.getElementById("diaryEntry").style.display = 'block';
     }
 }
 
