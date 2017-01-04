@@ -3,18 +3,19 @@ var data = [];
 function toggleEating(){
     //or diary Entry
     if(document.getElementById("startStopEating").innerHTML == "Submit"){
-        var entries = JSON.parse(localStorage.diaryEntries);
-        entries.push({
+        data = JSON.parse(localStorage.data);
+        data.push({
             "t" : new Date().getTime(),
-            "e" : document.getElementById("diaryEntry").value
+            "m" : document.getElementById("diaryEntry").value
         });
-        localStorage.diaryEntries = JSON.stringify(entries);
+        localStorage.data = JSON.stringify(data);
         document.getElementById("diaryEntry").value = "";
         typing();
     } else {
         storeEating();
         toggleEatingDisplay();
     }
+    exportHistory(data);
 }
 
 function storeEating(){
@@ -25,7 +26,6 @@ function storeEating(){
         "e" : !data[data.length-1].e
     };
     data.push(event);
-    exportHistory(data);
     localStorage.currentState = event.e;
     localStorage.data = JSON.stringify(data);
 }
@@ -39,6 +39,7 @@ function init(){
     }
     if(localStorage.diary == "true"){
         document.getElementById("diaryEntry").style.display = 'block';
+        document.getElementById("diaryToggle").innerHTML = 'ON';
     } 
     
     if (localStorage.currentState == "true"){
@@ -89,9 +90,6 @@ function exportHistory(history){
 }
 
 function typing(){
-    if(!localStorage.diaryEntries){
-        localStorage.diaryEntries = JSON.stringify([]);
-    }
     if(document.getElementById("diaryEntry").value.length > 0){
         document.getElementById("startStopEating").innerHTML = 'Submit';
     } else {
@@ -112,9 +110,11 @@ function toggleDiary(){
     if(localStorage.diary == "true"){
         localStorage.diary = "false";
         document.getElementById("diaryEntry").style.display = 'none';
+        document.getElementById("diaryToggle").innerHTML = 'OFF';
     } else {
         localStorage.diary = "true";
         document.getElementById("diaryEntry").style.display = 'block';
+        document.getElementById("diaryToggle").innerHTML = 'ON';
     }
 }
 

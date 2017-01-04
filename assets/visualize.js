@@ -46,7 +46,7 @@ function drawV(){
     var last31 = [];
     var less31 = new Date().getTime() - 1000*60*60*24*31;
     for(var i = 0; i < data.length;i++){
-        if(data[i].t > less31){
+        if(data[i].t > less31 && data[i].m == undefined){
             last31.push(data[i]);
         }
     }
