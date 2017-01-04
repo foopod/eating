@@ -54,8 +54,14 @@ function init(){
 
 function updateTime(){
     var now  = new Date().getTime();
-    var then = data[data.length-1].t;
-
+    var event = data[data.length-1];
+    var index = 1;
+    while(event.e == undefined){
+        event = data[data.length-index];
+        index++;
+    }
+    
+    then = event.t;
     var ms = moment(now,"x").diff(moment(then,"x"));
     var d = moment.duration(ms);
     var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
