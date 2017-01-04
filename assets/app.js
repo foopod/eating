@@ -32,11 +32,14 @@ function storeEating(){
 
 function init(){
     if (!localStorage.data){
-        localStorage.data = JSON.stringify([]);
-        stopEating();
-    } else {
-        data = JSON.parse(localStorage.data);
+        localStorage.data = JSON.stringify([{
+            "t" : new Date().getTime(),
+            "e" : false
+        }]);
+        localStorage.currentState = false;
+        toggleEatingDisplay();
     }
+    data = JSON.parse(localStorage.data);
     if(localStorage.diary == "true"){
         document.getElementById("diaryEntry").style.display = 'block';
         document.getElementById("diaryToggle").innerHTML = 'ON';
