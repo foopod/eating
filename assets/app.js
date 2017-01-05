@@ -21,17 +21,10 @@ function toggleEating(){
 function storeEating(){
     data = JSON.parse(localStorage.data);
     var time = new Date().getTime();
-    var isEating = false;
-    if(data.length > 0){
-        isEating = !data[data.length-1].e
-    }
     var event = {
         "t" : time,
-        "e" : isEating
+        "e" : !data[data.length-1].e
     };
-    if(event.e == undefined){
-        event.e = false;    
-    }
     data.push(event);
     localStorage.currentState = event.e;
     localStorage.data = JSON.stringify(data);
@@ -39,11 +32,14 @@ function storeEating(){
 
 function init(){
     if (!localStorage.data){
-        localStorage.data = JSON.stringify([]);
-        toggleEating();
-    } else {
-        data = JSON.parse(localStorage.data);
+        localStorage.data = JSON.stringify([{
+            "t" : new Date().getTime(),
+            "e" : false
+        }]);
+        localStorage.currentState = false;
+        toggleEatingDisplay();
     }
+    data = JSON.parse(localStorage.data);
     if(localStorage.diary == "true"){
         document.getElementById("diaryEntry").style.display = 'block';
         document.getElementById("diaryToggle").innerHTML = 'ON';
