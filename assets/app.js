@@ -21,10 +21,17 @@ function toggleEating(){
 function storeEating(){
     data = JSON.parse(localStorage.data);
     var time = new Date().getTime();
+    var isEating = false;
+    if(data.length > 0){
+        isEating = !data[data.length-1].e
+    }
     var event = {
         "t" : time,
-        "e" : !data[data.length-1].e
+        "e" : isEating
     };
+    if(event.e == undefined){
+        event.e = false;    
+    }
     data.push(event);
     localStorage.currentState = event.e;
     localStorage.data = JSON.stringify(data);
@@ -33,7 +40,7 @@ function storeEating(){
 function init(){
     if (!localStorage.data){
         localStorage.data = JSON.stringify([]);
-        stopEating();
+        toggleEating();
     } else {
         data = JSON.parse(localStorage.data);
     }
