@@ -38,10 +38,11 @@
             <h4>How is my data stored?</h4>
             <p>Chowtime uses the browser's local storage. This means that your data never leaves your device and is yours to do with as you please. The only downside to this is that localstorage is wiped whenever you delete your local cache/history/app data.</p>
             <h4>How can I see my data?</h4>
-            <p>Currently I am working on a <a href="visualize">visualization tool</a> (note that this will only work if you have at least 24 hours worth of entries and currently it only shows the last 31 days of activity) or you can export the data directly with <a href="#" id="link" download="eatingHistory.json">this link</a>.</p>
+            <p>Download your data <a href="#" id="link" download="eatingHistory.json">here</a>. It is stored in json and maps a timestamp to a triggering event, so <code>{"t":1483643095238,"e":true}</code> is an event where <code>t</code> is the timestamp and <code>e</code> is whether you started eating or stopped.</p>
+            <p>Currently I am also working on a <a href="visualize">visualization tool</a> (note that this will only work if you fast for less than 24 hours at a time and currently it only shows the last 31 days of activity).</p>
             <h4>Experimental Features?</h4>
             <p>Diary Mode <a id="diaryToggle" onclick="toggleDiary()" class="submit">OFF</a></p>
-            <p>This allows you to record any additional information you want. These are time stamped and kept alongside your chowtime data. You could record how much sleep you got, things you eat, how you feel, current weight or anything else. Like this whole tool this feature is very experimental.</p>
+            <p>This allows you to record any additional information you want. These are time stamped and kept alongside your chowtime data. You could record how much sleep you got, things you eat, how you feel, current weight or anything else. Like this whole tool this feature is very experimental. If you enter information on the form key:value it will be stored as such in the exported json array, otherwise it will be stored with the key m (for message). Please note that keys e and t are already used to store the timestamps and if you are eating, if you use these they will be ignored.</p>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
         <script src="assets/app.js"></script>

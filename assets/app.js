@@ -4,10 +4,17 @@ function toggleEating(){
     //or diary Entry
     if(document.getElementById("startStopEating").innerHTML == "Submit"){
         data = JSON.parse(localStorage.data);
+        var key = "m";
+        var message  = document.getElementById("diaryEntry").value;
+        if (~message.indexOf(":") && !(~message.indexOf("e:") || ~message.indexOf("t:"))){
+            key = message.split(':')[0];
+            message = message.split(':')[1];
+            
+        }
         data.push({
-            "t" : new Date().getTime(),
-            "m" : document.getElementById("diaryEntry").value
-        });
+                "t" : new Date().getTime(),
+                [key] : message
+            });
         localStorage.data = JSON.stringify(data);
         document.getElementById("diaryEntry").value = "";
         typing();
