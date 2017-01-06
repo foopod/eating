@@ -5,11 +5,11 @@
         <link href="https://fonts.googleapis.com/css?family=Sniglet:800" rel="stylesheet">
         <link rel="stylesheet" href="assets/style.css">
     </head>
-    <body>
-        <canvas id="app" style="margin: 0px;margin-top:-100px;"></canvas>
-        <div style="position:fixed;left:10px;top:10px;margin-top:-20px;">
+    <body style="padding: 0px; margin: 0px;">
+        <div style="position:absolute; top:-10px; left:10px;">
             <a href="#" onclick="toggleInfo()" class="badge" >?</a>
         </div>
+        <canvas id="app" style="margin: 0px;padding:0px;"></canvas>
         <div style="margin-top:-150px; display:none;" id="info">
             <h4>What am I looking at here?</h4>
             <p>Each ring represents a single day (midnight at the top) with the earliest in the centre and the most outer ring being today. The sections in blue mark when you are not eating and red when you are.</p>
