@@ -62,7 +62,7 @@
         <div style="background-color:lightblue;" class="container"> <h1 style="cursor:pointer;" id="vLink">Visualize</h1></div>
         <a onclick="toggleInfo()" class="badge">?</a>
             
-        <div id="info" style="display:none; color:lightgrey;">
+        <div id="info" style="display:none;">
             <h4>What is Chowtime?</h4>
             <p>Chowtime is a simple web app that can be used to track your eating habits. Just click the button above whenever you start and stop eating. Then export the data and use it however you like, make some cool graphs or something idk. I initially created it to track my efforts in intermittent fasting.</p>
             <p>Please note that chowtime is in Alpha testing. Hopefully there won't be any major changes to the structuring of the data, but in the case where there is I will do my best to maintain compatability.</p>
@@ -80,6 +80,8 @@
                 <label class="onoffswitch-label" for="diaryToggle"></label>
             </div>
             <p>This allows you to record any additional information you want. These are time stamped and kept alongside your chowtime data. You could record how much sleep you got, things you eat, how you feel, current weight or anything else. Like this whole tool this feature is very experimental. If you enter information on the form key:value it will be stored as such in the exported json array, otherwise it will be stored with the key m (for message). Please note that keys e and t are already used to store the timestamps and if you are eating, if you use these they will be ignored.</p>
+            
+            
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
         <script src="assets/app.js"></script>
