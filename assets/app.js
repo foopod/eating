@@ -1,28 +1,28 @@
 var data = [];
             
 function toggleEating(){
-    //or diary Entry
-    if(document.getElementById("startStopEating").innerHTML == "Submit"){
-        data = JSON.parse(localStorage.data);
-        var key = "m";
-        var message  = document.getElementById("diaryEntry").value;
+    storeEating();
+    toggleEatingDisplay();
+    exportHistory(data);
+}
+
+function addNewDiaryEntry(){
+    data = JSON.parse(localStorage.data);
+    var key = "m";
+    var message  = document.getElementById("diaryField").value;
+    if(message.length>0){
         if (~message.indexOf(":") && !(~message.indexOf("e:") || ~message.indexOf("t:"))){
             key = message.split(':')[0];
             message = message.split(':')[1];
-            
         }
         data.push({
                 "t" : new Date().getTime(),
                 [key] : message
             });
         localStorage.data = JSON.stringify(data);
-        document.getElementById("diaryEntry").value = "";
-        typing();
-    } else {
-        storeEating();
-        toggleEatingDisplay();
+        document.getElementById("diaryField").value = "";
+        exportHistory(data);
     }
-    exportHistory(data);
 }
 
 function storeEating(){
@@ -38,6 +38,10 @@ function storeEating(){
 }
 
 function init(){
+    //Visualization Redirect
+    document.getElementById("vLink").onclick = function () {
+        location.href = "/visualize";
+    };
     if (!localStorage.data){
         localStorage.data = JSON.stringify([{
             "t" : new Date().getTime(),
@@ -50,7 +54,10 @@ function init(){
     if(localStorage.diary == "true"){
         document.getElementById("diaryEntry").style.display = 'block';
         document.getElementById("diaryToggle").innerHTML = 'ON';
-    } 
+    } else {
+        document.getElementById("diaryEntry").style.display = 'none';
+        document.getElementById("diaryToggle").innerHTML = 'OFF';
+    }
     
     if (localStorage.currentState == "true"){
         showEating();
@@ -105,17 +112,11 @@ function exportHistory(history){
     var link = document.getElementById('link').href = dataUri;
 }
 
-function typing(){
-    if(document.getElementById("diaryEntry").value.length > 0){
-        document.getElementById("startStopEating").innerHTML = 'Submit';
-    } else {
-        toggleEatingDisplay();
-    }
-}
-
 function toggleInfo(){
     if(document.getElementById("info").style.display == 'none'){
-        document.getElementById("info").style.display = 'block';
+        var info = document.getElementById("info");
+        info.style.display = 'block';
+        scrollTo(document.body,500,200);
     } else {
         document.getElementById("info").style.display = 'none';
     }
@@ -134,4 +135,15 @@ function toggleDiary(){
     }
 }
 
+function scrollTo(element, to, duration) {
+    if (duration <= 0) return;
+    var difference = to - element.scrollTop;
+    var perTick = difference / duration * 10;
+
+    setTimeout(function() {
+        element.scrollTop = element.scrollTop + perTick;
+        if (element.scrollTop === to) return;
+        scrollTo(element, to, duration - 10);
+    }, 10);
+}
 init();
