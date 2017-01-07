@@ -22,6 +22,7 @@ input[type=text] {
     font-family: 'Sniglet', cursive;
 }
 body{
+    background-color: black;
     text-align: center;
     font-family: 'Sniglet', cursive;
     margin-top: 30px;
