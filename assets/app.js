@@ -95,7 +95,6 @@ function toggleEatingDisplay(){
 }
 
 function showEating(){
-    document.getElementById("startStopEating").innerHTML = 'Not Eating';
     document.getElementById("eatingDisplay").style.display = 'block';
     document.getElementById("notEatingDisplay").style.display = 'none';
 }
@@ -103,7 +102,6 @@ function showEating(){
 function showNotEating(){
     document.getElementById("eatingDisplay").style.display = 'none';
     document.getElementById("notEatingDisplay").style.display = 'block';
-    document.getElementById("startStopEating").innerHTML = 'Chow Time!';
 }
 
 function exportHistory(history){
