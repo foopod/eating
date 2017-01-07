@@ -1,5 +1,6 @@
 {
   "name": "Chowtime",
+  "short_name":"Chowtime",
   "icons": [
     {
       "src": "assets/images/icon_192.png",
@@ -7,7 +8,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#fff",
