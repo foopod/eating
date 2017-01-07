@@ -53,10 +53,10 @@ function init(){
     data = JSON.parse(localStorage.data);
     if(localStorage.diary == "true"){
         document.getElementById("diaryEntry").style.display = 'block';
-        document.getElementById("diaryToggle").innerHTML = 'ON';
+        document.getElementById("diaryToggle").checked = true;
     } else {
         document.getElementById("diaryEntry").style.display = 'none';
-        document.getElementById("diaryToggle").innerHTML = 'OFF';
+        document.getElementById("diaryToggle").checked = true;
     }
     
     if (localStorage.currentState == "true"){
@@ -125,11 +125,9 @@ function toggleDiary(){
     if(localStorage.diary == "true"){
         localStorage.diary = "false";
         document.getElementById("diaryEntry").style.display = 'none';
-        document.getElementById("diaryToggle").innerHTML = 'OFF';
     } else {
         localStorage.diary = "true";
         document.getElementById("diaryEntry").style.display = 'block';
-        document.getElementById("diaryToggle").innerHTML = 'ON';
     }
 }
 

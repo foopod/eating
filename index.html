@@ -74,7 +74,11 @@
             <p>Download your data <a href="#" id="link" download="eatingHistory.json">here</a>. It is stored in json and maps a timestamp to a triggering event, so <code>{"t":1483643095238,"e":true}</code> is an event where <code>t</code> is the timestamp and <code>e</code> is whether you started eating or stopped.</p>
             <p>Currently I am also working on a <a href="visualize">visualization tool</a> (note that this will only work if you fast for less than 24 hours at a time and currently it only shows the last 31 days of activity).</p>
             <h4>Experimental Features?</h4>
-            <p>Diary Mode <a id="diaryToggle" onclick="toggleDiary()" class="submit">OFF</a></p>
+            <p style="display:inline-block;padding-right:20px;">Diary Mode</p> 
+            <div class="onoffswitch"style="display:inline-block;margin-left:auto;">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="diaryToggle" onclick="toggleDiary()">
+                <label class="onoffswitch-label" for="diaryToggle"></label>
+            </div>
             <p>This allows you to record any additional information you want. These are time stamped and kept alongside your chowtime data. You could record how much sleep you got, things you eat, how you feel, current weight or anything else. Like this whole tool this feature is very experimental. If you enter information on the form key:value it will be stored as such in the exported json array, otherwise it will be stored with the key m (for message). Please note that keys e and t are already used to store the timestamps and if you are eating, if you use these they will be ignored.</p>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
