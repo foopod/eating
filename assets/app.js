@@ -38,10 +38,6 @@ function storeEating(){
 }
 
 function init(){
-    //Visualization Redirect
-    document.getElementById("vLink").onclick = function () {
-        location.href = "/visualize";
-    };
     if (!localStorage.data){
         localStorage.data = JSON.stringify([{
             "t" : new Date().getTime(),
@@ -56,7 +52,15 @@ function init(){
         document.getElementById("diaryToggle").checked = true;
     } else {
         document.getElementById("diaryEntry").style.display = 'none';
-        document.getElementById("diaryToggle").checked = true;
+        document.getElementById("diaryToggle").checked = false;
+    }
+    
+    if(localStorage.visualization == "true"){
+        document.getElementById("visualizationContainer").style.display = 'block';
+        document.getElementById("visToggle").checked = true;
+    } else {
+        document.getElementById("visualizationContainer").style.display = 'none';
+        document.getElementById("visToggle").checked = false;
     }
     
     if (localStorage.currentState == "true"){
@@ -121,13 +125,22 @@ function toggleInfo(){
 }
 
 function toggleDiary(){
-    var state = localStorage.diary;
     if(localStorage.diary == "true"){
         localStorage.diary = "false";
         document.getElementById("diaryEntry").style.display = 'none';
     } else {
         localStorage.diary = "true";
         document.getElementById("diaryEntry").style.display = 'block';
+    }
+}
+
+function toggleVis(){
+    if(localStorage.visualization == "true"){
+        localStorage.visualization = "false";
+        document.getElementById("visualizationContainer").style.display = 'none';
+    } else {
+        localStorage.visualization = "true";
+        document.getElementById("visualizationContainer").style.display = 'block';
     }
 }
 

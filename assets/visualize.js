@@ -13,7 +13,7 @@ function start(){
     }
     canvas = document.getElementById('app');
     ctx = canvas.getContext('2d');
-    resizeCanvas();
+//    resizeCanvas();
     x = canvas.width/2;
     y = canvas.height/2;
 //    var time = new Date().getTime() - 1000*60*60*24*50;
@@ -51,6 +51,11 @@ function drawV(){
         }
     }
     days = daysBetween(new Date(last31[0].t),new Date(last31[last31.length-1].t));
+    if(days >= 1){
+        document.getElementById("app").style.display = 'block';
+    } else {
+        document.getElementById("visLabel").style.display = 'block';
+    }
     for(var i = 0; i < last31.length-1; i++){
         var current = last31[i].t;
         var next = last31[i+1].t;
