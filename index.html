@@ -59,7 +59,10 @@
         <h3> For <span id="time"></span></h3>
             </div>
         <div style="background-color:lightpink;" class="container"  id="diaryEntry"><input type=text placeholder="thoughts.." id="diaryField"> <h1 style="cursor:pointer;" onclick="addNewDiaryEntry()">Submit</h1></div>
-        <div style="background-color:lightblue;" class="container"> <h1 style="cursor:pointer;" id="vLink">Visualize</h1></div>
+        <div id="visualizationContainer" style="background-color:lightyellow;display:none;" class="container"> 
+            <canvas id="app" style="display:none;margin:auto;" width="300px" height="300px"></canvas>
+            <h1 id="visLabel" style="display:none;">Need more data</h1>
+        </div>
         <a onclick="toggleInfo()" class="badge">?</a>
             
         <div id="info" style="display:none;">
@@ -71,8 +74,14 @@
             <p>Chowtime uses the browser's local storage. This means that your data never leaves your device and is yours to do with as you please. The only downside to this is that localstorage is wiped whenever you delete your local cache/history/app data.</p>
             <h4>How can I see my data?</h4>
             <p>Download your data <a href="#" id="link" download="eatingHistory.json">here</a>. It is stored in json and maps a timestamp to a triggering event, so <code>{"t":1483643095238,"e":true}</code> is an event where <code>t</code> is the timestamp and <code>e</code> is whether you started eating or stopped.</p>
-            <p>Currently I am also working on a <a href="visualize">visualization tool</a> (note that this will only work if you fast for less than 24 hours at a time and currently it only shows the last 31 days of activity).</p>
+            
             <h4>Experimental Features?</h4>
+            <p style="display:inline-block;padding-right:20px;">Visualization</p> 
+            <div class="onoffswitch"style="display:inline-block;margin-left:auto;">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="visToggle" onclick="toggleVis()">
+                <label class="onoffswitch-label" for="visToggle"></label>
+            </div>
+            <p>Each ring represents a single day (midnight at the top) with the earliest in the centre and the most outer ring being today. The sections in blue mark when you are not eating and red when you are, however it needs 24 hours worth of data first though for it to work properly.</p>
             <p style="display:inline-block;padding-right:20px;">Diary Mode</p> 
             <div class="onoffswitch"style="display:inline-block;margin-left:auto;">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="diaryToggle" onclick="toggleDiary()">
@@ -83,6 +92,7 @@
             
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+        <script src="assets/visualize.js"></script>
         <script src="assets/app.js"></script>
     </body>
 
