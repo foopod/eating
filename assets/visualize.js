@@ -5,11 +5,11 @@ var x;
 var y;
 var ctx;
 var canvas;
-
+var stuff;
 
 function start(){
-    if(typeof data == 'undefined'){
-        data = JSON.parse(localStorage.data);
+    if(typeof stuff == 'undefined'){
+        stuff = JSON.parse(localStorage.data);
     }
     canvas = document.getElementById('app');
     ctx = canvas.getContext('2d');
@@ -30,9 +30,9 @@ function start(){
 //    }
 //                data = stuff;
       
-    data.push({
+    stuff.push({
         "t" : new Date().getTime(),
-        "e" : !data[data.length-1].e
+        "e" : !stuff[stuff.length-1].e
     });
     drawV();
 }
@@ -45,9 +45,9 @@ function drawV(){
     }
     var last31 = [];
     var less31 = new Date().getTime() - 1000*60*60*24*31;
-    for(var i = 0; i < data.length;i++){
-        if(data[i].t > less31 && data[i].m == undefined){
-            last31.push(data[i]);
+    for(var i = 0; i < stuff.length;i++){
+        if(stuff[i].t > less31 && stuff[i].m == undefined){
+            last31.push(stuff[i]);
         }
     }
     days = daysBetween(new Date(last31[0].t),new Date(last31[last31.length-1].t));
