@@ -139,3 +139,4 @@ function daysBetween(first, second) {
     return Math.floor(days);
 }
 
+start();
