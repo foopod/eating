@@ -111,7 +111,7 @@ function drawArc(isEating, x, y, radius, start, end, maxRadius, isPhat){
         ctx.lineWidth=10 * (maxRadius)/200+40;
         ctx.arc(x,y,radius+45,start,end, false);
     } else {
-        ctx.lineWidth=4 * (maxRadius)/200 + 10;
+        ctx.lineWidth=4 * (maxRadius)/200 + 7;
         ctx.arc(x,y,radius+20,start,end, false);
     }
     ctx.stroke();
