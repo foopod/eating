@@ -44,7 +44,7 @@ function drawV(){
         radius = x;   
     }
     var last31 = [];
-    var less31 = new Date().getTime() - 1000*60*60*24*31;
+    var less31 = new Date().getTime() - 1000*60*60*24*7;
     for(var i = 0; i < stuff.length;i++){
         if(stuff[i].t > less31 && stuff[i].m == undefined){
             last31.push(stuff[i]);
