@@ -10,7 +10,7 @@
   ],
   "start_url": "/eating",
   "display": "standalone",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "background_color": "#fff",
   "description": "A simple food tracking app."
 }
