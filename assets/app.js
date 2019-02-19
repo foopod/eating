@@ -9,9 +9,9 @@ function toggleEating(){
 
 function confirmToggle(){
     if (localStorage.currentState == "true"){
-        confirmButton.innerHTML = "Start Eating"
+        confirmButton.innerHTML = "Fast"
     }else{
-        confirmButton.innerHTML = "Start Fasting"
+        confirmButton.innerHTML = "Eat"
     }
     document.getElementById("mainButton").style.display = 'none';
     document.getElementById("confirmationButtons").style.display = 'block';
