@@ -53,11 +53,17 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
 <!--        <canvas id="app" width="380px" height="380px" style="position:absolute;top:-60px;left:0px;right:0px;margin-left: auto;margin-right: auto;z-index :-1;"></canvas>-->
-        <div style="background-color:palegreen;cursor:pointer;" class="container" onclick="toggleEating()">
-        <div id="eatingDisplay" style="display:none;"><h1>CHOWING DOWN</h1><img src="assets/chow.svg" width=200px></div>
-        <div id="notEatingDisplay" style="display:none;"><h1>NOT EATING</h1><img src="assets/unchow.svg" width=200px></div><br><br><br>
-        <h3> For <span id="time"></span></h3>
-            </div>
+        <div class="container maindisplay" onclick="confirmToggle()" id="mainButton">
+            <div id="eatingDisplay" style="display:none;"><h1>CHOWING DOWN</h1><img src="assets/chow.svg" width=200px></div>
+            <div id="notEatingDisplay" style="display:none;"><h1>NOT EATING</h1><img src="assets/unchow.svg" width=200px></div>
+            <h3 class="timeDisplay"> For <span id="time"></span></h3>
+        </div>
+        <div style="display:none;" class="container maindisplay" id="confirmationButtons">
+          <div>
+            <a class="confirmButton" href="#" id="confirmButton" onclick="toggleEating()">Start Fasting</a>
+            <a class="confirmButton" href="#" onclick="cancelConfirm()">Cancel</a>
+          </div>
+        </div>
         <div style="background-color:lightpink;" class="container"  id="diaryEntry"><input type=text placeholder="thoughts.." id="diaryField"> <h1 style="cursor:pointer;" onclick="addNewDiaryEntry()">Submit</h1></div>
         <div id="visualizationContainer" style="background-color:lightyellow;display:none;" class="container"> 
             <canvas id="app" style="display:none;margin:auto;" width="300px" height="300px"></canvas>
