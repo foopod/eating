@@ -1,9 +1,25 @@
 var data = [];
             
 function toggleEating(){
+    cancelConfirm();
     storeEating();
     toggleEatingDisplay();
     exportHistory(data);
+}
+
+function confirmToggle(){
+    if (localStorage.currentState == "true"){
+        confirmButton.innerHTML = "Start Eating"
+    }else{
+        confirmButton.innerHTML = "Start Fasting"
+    }
+    document.getElementById("mainButton").style.display = 'none';
+    document.getElementById("confirmationButtons").style.display = 'block';
+}
+
+function cancelConfirm(){
+    document.getElementById("mainButton").style.display = 'block';
+    document.getElementById("confirmationButtons").style.display = 'none';
 }
 
 function addNewDiaryEntry(){
