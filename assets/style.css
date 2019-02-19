@@ -31,7 +31,7 @@ h1{
     font-size:32px;
     margin-top:0px;
     margin-bottom:0px;
-    padding-top:10px;
+    padding-top:30px;
     padding-bottom:10px;
 }
 h3{
@@ -131,4 +131,25 @@ a:visited{
     right: 0px; 
     background-color: #2196F3; 
 /*    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);*/
+}
+
+.maindisplay{
+    background-color:palegreen;
+    cursor:pointer;
+    height: 50%;
+}
+
+.timeDisplay{
+    padding-top: 3em;
+}
+
+.confirmButton{
+    display: block;
+    background-color: white;
+    border-radius:10px;
+    width: 300px;
+    margin: auto;
+    margin-top:50px;
+    padding: 30px 20px 30px 20px;
+    font-size: 2.2em;
 }
